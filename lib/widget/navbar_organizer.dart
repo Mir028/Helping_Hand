@@ -27,7 +27,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event, color: Colors.black),
-            label: 'View Events',
+            label: 'My Events',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail, color: Colors.black),

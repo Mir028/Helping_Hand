@@ -22,7 +22,7 @@ class _EventsPageState extends State<EventsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Events'),
+        title: const Text('All Events'),
       ),
       body: ListView.builder(
         itemCount: events.length,

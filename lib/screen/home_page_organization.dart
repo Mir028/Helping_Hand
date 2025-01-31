@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import '../widget/navbar_organizer.dart';
 import 'appplications.dart';
-import 'event_page.dart';
-import 'home_page_volunteer.dart';
-import 'create_event_page.dart';
 import 'event_page.dart' as eventPage;
+import 'my_events.dart';
 import 'profile_oranization.dart' as profilePage;
+import 'create_event_page.dart';
 
-
-// Main Page for Organizer
 class OrganizerHomePage extends StatefulWidget {
   const OrganizerHomePage({Key? key}) : super(key: key);
 
@@ -20,7 +18,7 @@ class _OrganizerHomePageState extends State<OrganizerHomePage> {
 
   static const List<Widget> _pages = [
     OrganizerHomeContent(),
-    eventPage.EventsPage(),
+    MyEventsPage(),
     ApplicationsPage(eventName: ''),
     profilePage.ProfilePage(),
   ];
@@ -33,35 +31,10 @@ class _OrganizerHomePageState extends State<OrganizerHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome, Organizer!'),
-      ),
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.black),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event, color: Colors.black),
-            label: 'View Events',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mail, color: Colors.black),
-            label: 'Applications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Colors.black),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
-      ),
+    return ScaffoldWithNavBar(
+      selectedIndex: _selectedIndex,
+      onItemTapped: _onItemTapped,
+      pages: _pages,
     );
   }
 }
@@ -88,7 +61,7 @@ class OrganizerHomeContent extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => EventsPage()),
+                    MaterialPageRoute(builder: (context) => eventPage.EventsPage()),
                   );
                 },
                 icon: const Icon(Icons.event),
@@ -114,7 +87,7 @@ class OrganizerHomeContent extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CreateEventPage(addEventCallback: (String eventName) { })),
+                    MaterialPageRoute(builder: (context) => CreateEventPage(addEventCallback: (String eventName) {})),
                   );
                 },
                 child: const Text('Create New Event'),
